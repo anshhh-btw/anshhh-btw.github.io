@@ -1,0 +1,24 @@
+#contact{
+    display: flex;
+    color: var(--color6);
+    flex-direction: column;
+    font-family: var(--font-mono);
+    justify-content: center;
+    align-items: center;
+    border: 1px dashed var(--matrixGreen);
+    margin: 30vh auto;
+    max-width: fit-content;
+    padding: 40px;
+    gap: 15px;
+    text-align: center;
+    >div:nth-child(1){
+        font-size: 1.2rem;
+    }
+    ul{
+        list-style-type: none;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        font-weight: 150;
+    }
+}

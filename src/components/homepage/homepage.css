@@ -1,0 +1,433 @@
+main {
+    margin: 30px auto;
+
+    >#topLineDiv {
+        width: 75vw;
+        display: flex;
+        color: var(--color5);
+        font-family: var(--font-mono);
+        font-size: 0.675rem;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 5px;
+        gap: 20px;
+        margin: auto;
+
+        >#topLine {
+            flex: 1;
+            background-color: var(--color5);
+            height: 1px;
+            font-weight: 100;
+        }
+    }
+
+    >#div1 {
+        width: 75vw;
+        display: flex;
+        justify-content: space-between;
+        align-items: stretch;
+        color: var(--color6);
+        font-family: var(--font-mono);
+        margin: 36px auto;
+        gap: 50px;
+
+        #div1PhotoFrame {
+            width: 380px;
+            height: 380px;
+            background-image: url(../../assets/svgs/frame.svg);
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            cursor: pointer;
+
+            >img {
+                transition: all 0.3s ease-out;
+                width: 95%;
+                /* display: none; */
+            }
+        }
+
+        #div1PhotoFrame:hover img {
+            scale: 0.9;
+        }
+
+        >#div1Left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            >#div1LeftTop {
+                h1 {
+                    font-weight: 200;
+                    font-size: 2.75rem;
+                }
+
+                p {
+                    font-weight: 100;
+                    font-size: 0.8rem;
+                }
+            }
+
+            >#div1LeftBottom {
+                padding: 20px;
+            }
+        }
+    }
+
+    >#div2 {
+        margin: 108px auto;
+        width: 75vw;
+
+        canvas {
+            border: 2px dashed var(--color3);
+            width: 100%;
+            height: 200px;
+        }
+    }
+
+    >#div3 {
+        min-height: 40vh;
+        background-image: radial-gradient(color-mix(in hsl, var(--safetyOrange), var(--color1)) 1px, transparent 1px);
+        background-size: 18px 18px;
+        background-color: var(--color1);
+
+        >div {
+            width: 75vw;
+            margin: auto;
+            padding: 20px 0;
+
+            >p {
+                color: var(--safetyOrange);
+                font-family: var(--font-mono);
+                font-weight: 250;
+                font-size: 1.8rem;
+
+                span {
+                    font-size: 2.3rem;
+                }
+            }
+        }
+
+        #div3List {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 10px;
+            overflow-x: scroll;
+            width: 75vw;
+        }
+
+        #div3List::-webkit-scrollbar {
+            display: none;
+        }
+
+        .div3Card {
+            border: 1px dashed var(--safetyOrange);
+            font-family: var(--font-mono);
+            color: var(--color6);
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            min-width: min-content;
+            padding: 20px;
+            max-width: 100%;
+            flex: 1;
+
+            .div3CardContent {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 30px;
+
+                >div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .div3CardHead {
+                    font-size: 1rem;
+                    font-weight: 300;
+
+                    span {
+                        color: var(--color5);
+                    }
+                }
+
+                .div3CardDesc {
+                    font-weight: 100;
+                    font-size: 0.8rem;
+                }
+            }
+
+            .div3CardVisual {
+                width: auto;
+
+                video {
+                    width: 100%;
+                }
+            }
+
+            .div3CardLinks {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                a {
+                    color: var(--color6);
+                    font-size: 0.75rem;
+                    text-decoration: none;
+                    font-weight: 200;
+                    transition: all 0.3s ease-out;
+                }
+
+                a:hover {
+                    color: color-mix(in srgb, var(--color6), var(--color5));
+                }
+            }
+        }
+    }
+
+    >#div4 {
+        min-height: 40vh;
+        background-image: radial-gradient(color-mix(in hsl, var(--matrixGreen), var(--color1)) 1px, transparent 1px);
+        background-size: 18px 18px;
+        background-color: var(--color1);
+        margin: 30px 0;
+
+        >div {
+            width: 75vw;
+            margin: auto;
+            padding: 20px 0;
+
+            >p {
+                color: var(--matrixGreen);
+                font-family: var(--font-mono);
+                font-weight: 250;
+                font-size: 1.8rem;
+
+                span {
+                    font-size: 2.3rem;
+                }
+            }
+        }
+
+
+        #div4List {
+            display: flex;
+            justify-content: flex-start;
+            align-items: stretch;
+            gap: 10px;
+            overflow-x: scroll;
+            width: 75vw;
+        }
+
+        #div4List::-webkit-scrollbar {
+            display: none;
+        }
+
+
+        .div4Card {
+            border: 1px dashed var(--matrixGreen);
+            font-family: var(--font-mono);
+            color: var(--color6);
+            display: flex;
+            flex-direction: column;
+            gap: 50px;
+            padding: 20px;
+            min-width: min-content;
+            max-width: 100%;
+            flex: 1;
+
+            .div4CardContent {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 30px;
+
+                >div {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+                }
+
+                .div4CardHead {
+                    font-size: 1rem;
+                    font-weight: 300;
+
+                    span {
+                        color: var(--color5);
+                    }
+                }
+
+                .div4CardDesc {
+                    font-weight: 100;
+                    font-size: 0.8rem;
+                }
+            }
+
+            .div4CardTechs {
+                display: flex;
+                flex-wrap: wrap;
+                font-size: 0.675rem;
+                gap: 5px;
+                font-weight: 100;
+                color: var(--matrixGreen);
+
+                .div4CardTag::before {
+                    content: "[";
+                }
+
+                .div4CardTag::after {
+                    content: "]";
+                }
+            }
+
+            .div4CardVisual {
+                width: 200px;
+
+                video,
+                img {
+                    width: 100%;
+                }
+            }
+
+            .div4CardLinks {
+                display: flex;
+                flex-direction: column;
+                gap: 5px;
+
+                a {
+                    color: var(--color6);
+                    font-size: 0.75rem;
+                    text-decoration: none;
+                    font-weight: 200;
+                    transition: all 0.3s ease-out;
+                }
+
+                a:hover {
+                    color: color-mix(in srgb, var(--color6), var(--color5));
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 920px) {
+    #div1 {
+        #div1PhotoFrame {
+            width: 40vw !important;
+            height: 40vw !important;
+        }
+
+        #div1LeftTop {
+            h1 {
+                font-size: min(2.75rem, 3vw) !important;
+            }
+
+            p {
+                font-size: min(0.8rem, 2vw) !important;
+            }
+        }
+    }
+}
+
+@media (max-width: 750px) {
+
+    #div3List,
+    #div4List {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 600px) {
+    #div1 {
+        flex-direction: column-reverse;
+        align-items: center;
+
+        #div1PhotoFrame {
+            width: 75vw !important;
+            height: 75vw !important;
+        }
+
+        #div1LeftTop {
+            h1 {
+                font-size: 1.4rem !important;
+            }
+
+            p {
+                font-size: 0.75rem !important;
+            }
+        }
+    }
+
+    .div3Card {
+        max-width: none !important;
+    }
+
+    .div4Card {
+        max-width: none !important;
+    }
+
+    #div3Head>p {
+        font-size: 1.4rem !important;
+
+        span {
+            font-size: 1.6rem !important;
+        }
+    }
+
+    .div3CardHead {
+        font-size: 0.9rem !important;
+    }
+
+    .div3CardDesc {
+        font-size: 0.7rem !important;
+    }
+
+    #div3List {
+        flex-direction: column;
+    }
+
+    #div4Head>p {
+        font-size: 1.4rem !important;
+
+        span {
+            font-size: 1.6rem !important;
+        }
+    }
+
+    .div4CardHead {
+        font-size: 0.9rem !important;
+    }
+
+    .div4CardDesc {
+        font-size: 0.7rem !important;
+    }
+
+    #div4List {
+        flex-direction: column;
+    }
+    #div3List,#div4List{
+        width: 90vw!important;
+    }
+}
+
+@media (max-width: 1040px) {
+    #div1LeftBottom {
+        padding: 20px 0 !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    #topLineDiv {
+        white-space: nowrap !important;
+
+        #topLine {
+            flex: 1;
+        }
+    }
+}

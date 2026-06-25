@@ -1,0 +1,92 @@
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 75vw;
+    padding: 12px 16px;
+    color: var(--color6);
+    margin: auto;
+    margin-top: 10px;
+    backdrop-filter: blur(1px);
+    >div {
+        padding: 10px 0;
+    }
+
+    a {
+        color: var(--color6);
+        text-decoration: none;
+    }
+
+    ul {
+        display: flex;
+        list-style-type: none;
+
+        a {
+            font-family: var(--font-mono);
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            font-weight: 200;
+            transition: all 0.3s ease;
+        }
+
+        li {
+            padding: 0 10px;
+            white-space: nowrap;
+        }
+    }
+
+    #navLeft a {
+        font-family: var(--font-normal);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+        font-size: 1.1rem;
+    }
+
+    #navRight {
+        display: flex;
+        font-size: 0.7rem;
+        font-weight: 200;
+        font-family: var(--font-mono);
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+
+    #navBlink {
+        width: 7.5px;
+        height: 7.5px;
+        border-radius: 50%;
+    }
+
+    #navRight p {
+        display: flex;
+    }
+}
+
+@media (max-width: 900px) {
+    nav {
+        width: auto;
+        margin: 5px 0;
+
+        >div {
+            padding: 5px 0;
+        }
+    }
+}
+
+@media (max-width: 700px) {
+    #navLeft a {
+        font-size: min(1.1rem, 3.5vw) !important;
+    }
+
+    #navRight p {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 600px) {
+    nav li {
+        padding: 0 1vw !important;
+        font-size: min(0.7rem, 1vw) !important;
+    }
+}

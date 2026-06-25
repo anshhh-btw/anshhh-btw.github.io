@@ -1,0 +1,381 @@
+import './homepage.css';
+
+import { AnimatePresence, motion } from "framer-motion";
+
+import MyLink from '../links';
+import MyButton from '../button';
+import TicTacToe from '../../projects/ticTacToe/ticTacToe';
+import Conways from '../../projects/conways/conways'
+import Fourier from '../../projects/fourier/fourier'
+import { useEffect, useRef, useState } from 'react';
+
+const imageModules = import.meta.glob('../../assets/myPhotos/*.{jpg,png,jpeg,svg,webp}', { eager: true });
+const photos = Object.values(imageModules).map(mod => mod.default);
+import mazeVisual from '../../assets/videos/maze.mp4';
+import { Link, useNavigate } from 'react-router-dom';
+
+
+const applicableColors = ["#FFFF00", "#00FFFF", "#FF00FF", "#FFB300", "#FF5500", "#CCA300", "#00FF66", "#00E5FF", "#A3FF00"]
+
+function randint(min, max) {
+    return Math.floor(Math.random() * (max - min) + min);
+}
+
+function choice(array) {
+    return array[randint(0, array.length)];
+}
+
+function Homepage() {
+    const sandCanvasRef = useRef(null);
+    const sandDataRef = useRef({});
+    const photoSlideshowIntervalRef = useRef(null);
+
+    const isDrawingRef = useRef(false);
+    const currentDrawingColorRef = useRef('#FF00FF');
+
+    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const canvas = sandCanvasRef.current;
+        if (!canvas) return;
+
+        const canvasWidth = Math.floor(canvas.offsetWidth);
+        const canvasHeight = Math.floor(canvas.offsetHeight);
+        canvas.width = canvasWidth;
+        canvas.height = canvasHeight;
+
+        const totalPixels = canvasWidth * canvasHeight;
+        const bgColor = "#0A0A0A";
+
+        let particlesData = sandDataRef.current;
+
+        function spawnSand(color, quantity) {
+            let attempts = 0;
+            let spawned = 0;
+            const maxSpawnIndex = totalPixels;
+
+            while (spawned < quantity && attempts < quantity * 3) {
+                let targetIndex = randint(0, maxSpawnIndex);
+                if (particlesData[targetIndex] === undefined) {
+                    particlesData[targetIndex] = color;
+                    spawned++;
+                }
+                attempts++;
+            }
+        }
+
+        const ctx = canvas.getContext('2d');
+        let animationFrameId;
+
+        function renderCanvas() {
+            ctx.fillStyle = bgColor;
+            ctx.fillRect(0, 0, canvasWidth, canvasHeight);
+
+            const imgData = ctx.createImageData(canvasWidth, canvasHeight);
+
+            for (let i = 0; i < imgData.data.length; i += 4) {
+                imgData.data[i] = 10;
+                imgData.data[i + 1] = 10;
+                imgData.data[i + 2] = 10;
+                imgData.data[i + 3] = 255;
+            }
+
+            particlesData = sandDataRef.current;
+
+            for (const indexStr in particlesData) {
+                const index = parseInt(indexStr);
+                const color = particlesData[index];
+                const dataOffset = index * 4;
+
+                if (color) {
+                    const r = parseInt(color.slice(1, 3), 16);
+                    const g = parseInt(color.slice(3, 5), 16);
+                    const b = parseInt(color.slice(5, 7), 16);
+
+                    imgData.data[dataOffset] = r;
+                    imgData.data[dataOffset + 1] = g;
+                    imgData.data[dataOffset + 2] = b;
+                }
+            }
+
+            ctx.putImageData(imgData, 0, 0);
+
+            gravity();
+            animationFrameId = requestAnimationFrame(renderCanvas);
+        }
+
+        function gravity() {
+            const activeIndices = Object.keys(particlesData).map(Number).sort((a, b) => b - a);
+            const nextParticlesData = {};
+
+            for (let i = 0; i < activeIndices.length; i++) {
+                const currentIndex = activeIndices[i];
+                const color = particlesData[currentIndex];
+
+                const coordX = currentIndex % canvasWidth;
+                const coordY = Math.floor(currentIndex / canvasWidth);
+
+                if (coordY >= canvasHeight - 1) {
+                    nextParticlesData[currentIndex] = color;
+                    continue;
+                }
+
+                const directDown = currentIndex + canvasWidth;
+                const downLeft = directDown - 1;
+                const downRight = directDown + 1;
+
+                if (particlesData[directDown] === undefined && nextParticlesData[directDown] === undefined) {
+                    nextParticlesData[directDown] = color;
+                }
+                else {
+                    const dynamicPaths = [];
+                    if (coordX > 0 && particlesData[downLeft] === undefined && nextParticlesData[downLeft] === undefined) {
+                        dynamicPaths.push(downLeft);
+                    }
+                    if (coordX < canvasWidth - 1 && particlesData[downRight] === undefined && nextParticlesData[downRight] === undefined) {
+                        dynamicPaths.push(downRight);
+                    }
+
+                    if (dynamicPaths.length > 0) {
+                        nextParticlesData[choice(dynamicPaths)] = color;
+                    } else {
+                        nextParticlesData[currentIndex] = color;
+                    }
+                }
+            }
+
+            particlesData = nextParticlesData;
+            sandDataRef.current = nextParticlesData;
+        }
+
+        spawnSand('#FF00FF', 2000);
+        spawnSand('#00FFFF', 2000);
+        spawnSand('#FFFF00', 2000);
+
+        renderCanvas();
+
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
+    const addSandAtEventLocation = (e) => {
+        const canvas = sandCanvasRef.current;
+        if (!canvas) return;
+
+        const rect = canvas.getBoundingClientRect();
+
+        const isTouch = e.touches && e.touches.length > 0;
+        const clientX = isTouch ? e.touches[0].clientX : e.clientX;
+        const clientY = isTouch ? e.touches[0].clientY : e.clientY;
+
+        const relativeX = clientX - rect.left;
+        const relativeY = clientY - rect.top;
+
+        const mouseX = Math.floor((relativeX / rect.width) * canvas.width);
+        const mouseY = Math.floor((relativeY / rect.height) * canvas.height);
+
+        const radius = 1;
+        for (let dy = -radius; dy <= radius; dy++) {
+            for (let dx = -radius; dx <= radius; dx++) {
+                const targetX = mouseX + dx;
+                const targetY = mouseY + dy;
+
+                if (targetX >= 0 && targetX < canvas.width && targetY >= 0 && targetY < canvas.height) {
+                    const index = targetY * canvas.width + targetX;
+                    sandDataRef.current[index] = currentDrawingColorRef.current;
+                }
+            }
+        }
+    };
+
+    const handleStart = (e) => {
+        isDrawingRef.current = true;
+        currentDrawingColorRef.current = choice(applicableColors);
+        addSandAtEventLocation(e);
+    };
+
+    const handleMove = (e) => {
+        if (!isDrawingRef.current) return;
+
+        if (e.cancelable) {
+            e.preventDefault();
+        }
+
+        addSandAtEventLocation(e);
+    };
+
+    const handleEnd = () => {
+        isDrawingRef.current = false;
+    };
+
+    const handleMouseDown = (e) => {
+        isDrawingRef.current = true;
+
+        currentDrawingColorRef.current = choice(applicableColors);
+
+        addSandAtMouse(e);
+    };
+
+    const handleMouseMove = (e) => {
+        if (!isDrawingRef.current) return;
+        addSandAtMouse(e);
+    };
+
+    const handleMouseUpOrLeave = () => {
+        isDrawingRef.current = false;
+    };
+
+    return (
+        <main>
+            <div id="topLineDiv">
+                <div id="topLineTags">
+                    <p style={{ color: 'var(--neonAmber)' }}>// ASPIRING ENGINEER</p>
+                    <p style={{ color: 'var(--matrixGreen)' }}>// AUTOMATING LIFESTYLE</p>
+                </div>
+                <motion.div id="topLine" initial={{ flex: 0 }} animate={{ flex: 1 }} transition={{ duration: 0.5, ease: 'easeOut', type: 'spring' }}></motion.div>
+            </div>
+
+            <div id='div1'>
+                <motion.div id='div1Left' initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
+                    <div id='div1LeftTop'>
+                        <h1>BUILDING SYNERACTIVE SYSTEMS.</h1>
+                        <p>Creative engineer bridging the gap between hardware architecture and full-stack software. Merging custom Python backends, reactive interfaces, and microcontroller intelligence into premium, fully customizable projects designed to elevate lifestyle efficiency.</p>
+                    </div>
+                    <div id='div1LeftBottom'>
+                        <MyButton type='type1' text="CONNECT" onClickAction={() => { navigate('/contact') }}></MyButton>
+                    </div>
+                </motion.div>
+                <motion.div id='div1Right' initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
+                    <div id='div1PhotoFrame' onClick={() => {
+                        setCurrentPhotoIndex(currentPhotoIndex === photos.length - 1 ? 0 : currentPhotoIndex + 1)
+
+                    }}>
+                        <img src={photos[currentPhotoIndex]} alt="Slideshow frame content" />
+                    </div>
+                </motion.div>
+            </div>
+
+            <motion.div id='div2' initial={{ y: 100, opacity: 0 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
+                <canvas
+                    ref={sandCanvasRef}
+                    onMouseDown={handleStart}
+                    onMouseMove={handleMove}
+                    onMouseUp={handleEnd}
+                    onMouseLeave={handleEnd}
+                    onTouchStart={handleStart}
+                    onTouchMove={handleMove}
+                    onTouchEnd={handleEnd}
+                    style={{ cursor: 'crosshair', touchAction: 'none' }}
+                ></canvas>
+            </motion.div>
+            <motion.div id='div3' initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}>
+                <div id='div3Head'>
+                    <p><span>T</span>HE <span>S</span>IMULATION <span>L</span>AB</p>
+                </div>
+                <div id='div3List'>
+                    <div className='div3Card'>
+                        <div className='div3CardContent'>
+                            <div>
+                                <div className='div3CardHead'><span>00</span> UNBEATABLE TIC TAC TOE</div>
+                                <div className='div3CardDesc'>An optimized adversarial project that merges a raw Minimax decision tree with hardcoded strategic heuristics. This dual-layer architecture guarantees an unbeatable, zero-loss performance while keeping processing overhead at absolute zero.</div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div className='div3CardVisual'>
+                            <TicTacToe></TicTacToe>
+                        </div>
+                    </div>
+                    <div className='div3Card'>
+                        <div className='div3CardContent'>
+                            <div>
+                                <div className='div3CardHead'><span>01</span> CONWAY'S GAME OF LIFE</div>
+                                <div className='div3CardDesc'>A zero-player cellular automaton simulating biological population dynamics on a infinite two-dimensional grid. Regulated by a precise deterministic rule matrix, the system visualizes the emergence of complex life cycles, stable structures, and chaotic patterns from simple initial configurations.</div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div className='div3CardVisual'>
+                            <Conways></Conways>
+                        </div>
+                    </div>
+                    <div className='div3Card'>
+                        <div className='div3CardContent'>
+                            <div>
+                                <div className='div3CardHead'><span>02</span> FOURIER ORBITAL SYNTHESIZER</div>
+                                <div className='div3CardDesc'>A geometric signal processing sandbox utilizing discrete Fourier analysis. The simulation deconstructs arbitrary two-dimensional vector paths and coordinate inputs into a finite series of rotating epicycles. By calculating precise orbital frequencies, amplitudes, and phase differentials, the engine synthesizes complex waveform harmonics and traces continuous paths in real-time.</div>
+                            </div>
+                            <div>
+                            </div>
+                        </div>
+                        <div className='div3CardVisual'>
+                            <Fourier></Fourier>
+                        </div>
+                    </div>
+                    <div className='div3Card' style={{ alignSelf: 'flex-start' }}>
+                        <div className='div3CardContent'>
+                            <div>
+                                <div className='div3CardHead'><span>//</span> MAKING MORE</div>
+                                <div className='div3CardDesc'>Working constantly to explore new ideas and understand them with crystal clarity by building them.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+
+            <motion.div id='div4' initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.6, ease: "easeOut" }}>
+                <div id='div4Head'>
+                    <p><span>I</span>NDEPENDENT <span>P</span>ROJECTS</p>
+                </div>
+                <div id='div4List'>
+                    <div className='div4Card'>
+                        <div className='div4CardContent'>
+                            <div>
+                                <div className='div4CardHead'><span>00</span> MAZE</div>
+                                <div className='div4CardDesc'>An interactive web application built to explore the mathematics of maze generation and pathfinding algorithms. The platform allows users to visualize generation and solving processes step-by-step, play through the generated puzzles natively, and share playable maze designs via URLs.</div>
+                                <div className='div4CardTechs'>
+                                    <div className='div4CardTag'>React</div>
+                                    <div className='div4CardTag'>HTML5 Canvas</div>
+                                    <div className='div4CardTag'>Procedural Generation</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div className='div4CardLinks'>
+                                    <Link to={'https://anshhh-btw.github.io/maze/'}> // VISIT SITE</Link>
+                                </div>
+                                <div className='div4CardLinks'>
+                                    <Link to={'https://github.com/anshhh-btw/maze'}> // VISIT REPO</Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='div4CardVisual'>
+                            <video src={mazeVisual} autoPlay loop muted playsInline>
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+                    </div>
+
+                    <div className='div4Card' style={{ alignSelf: 'flex-start' }}>
+                        <div className='div4CardContent'>
+                            <div>
+                                <div className='div4CardHead'><span>//</span> MAKING MORE</div>
+                                <div className='div4CardDesc'>Working constantly to explore new ideas and understand them with crystal clarity by building them.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </motion.div>
+        </main>
+    );
+}
+
+export default Homepage;

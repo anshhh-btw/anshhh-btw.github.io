@@ -1,0 +1,42 @@
+#conwaysVisual {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    #conwaysBoard {
+        border: 1px dashed var(--safetyOrange);
+        >canvas{
+            cursor: crosshair;
+        }
+    }
+
+    #conwaysStats {
+        font-size: 0.5rem;
+        font-weight: 150;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 200px;
+        padding: 5px 0;
+    }
+
+    #conwaysControl {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 200px;
+
+        >button {
+            flex: 1;
+            font-size: 0.585rem;
+            font-family: var(--font-mono);
+            background-color: transparent;
+            border: 1px dotted var(--safetyOrange);
+            color: var(--safetyOrange);
+            font-weight: 150;
+            padding: 2px 0;
+            cursor: pointer;
+        }
+    }
+}

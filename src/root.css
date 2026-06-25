@@ -1,0 +1,51 @@
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+@font-face {
+    font-family: deltha;
+    src: url(./assets/fonts/Deltha/Deltha.ttf);
+}
+
+@font-face {
+    font-family: geist-mono;
+    src: url(./assets/fonts/Geist_Mono/GeistMono-VariableFont_wght.ttf);
+}
+
+@font-face {
+    font-family: tasa-orbiter;
+    src: url(./assets/fonts/TASA_Orbiter/TASAOrbiter-VariableFont_wght.ttf);
+}
+
+:root {
+    --font-normal: tasa-orbiter;
+    --font-mono: geist-mono;
+    --font-special: deltha;
+
+    --color1: #0A0A0A;
+    --color2: #121212;
+    --color3: #262626;
+    --color4: #FAFAFA;
+    --color5: #737373;
+    --color6: #EDEDED;
+
+    --neonAmber: #FFB300;
+    --safetyOrange: #FF5500;
+    --mutedAmber: #CCA300;
+
+    --matrixGreen: #00FF66;
+    --terminalCyan: #00E5FF;
+    --digitalLime: #A3FF00;
+}
+
+body {
+    background-color: var(--color1);
+    background-image: radial-gradient(var(--color3) 1px, transparent 1px);
+    background-size: 18px 18px;
+}
+
+html::-webkit-scrollbar {
+    display: none;
+}

@@ -1,0 +1,90 @@
+#ticTacToeVisual {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 200px;
+    margin: auto;
+
+    #board {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #boardCell {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+
+        >.cell {
+            width: 66px;
+            height: 66px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.3rem;
+            font-weight: 100;
+            font-family: var(--font-mono);
+        }
+    }
+
+    #stats {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.7rem;
+        font-weight: 100;
+    }
+
+    .cross1 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cline x1='0' y1='50' x2='100' y2='50' stroke='%23ededed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-size: cover;
+    }
+
+    .cross2 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cline x1='50' y1='0' x2='50' y2='100' stroke='%23ededed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-size: cover;
+
+    }
+
+    .cross3 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cline x1='0' y1='0' x2='100' y2='100' stroke='%23ededed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-size: cover;
+    }
+
+    .cross4 {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cline x1='100' y1='0' x2='0' y2='100' stroke='%23ededed' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-size: cover;
+    }
+
+    #boardRes {
+        display: none;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 10px;
+        font-weight: 200;
+
+        >div {
+            border: 1px solid var(--color6);
+            border-left: none;
+            border-right: none;
+            padding: 3px 10px;
+            font-size: 0.8rem;
+        }
+
+        >button {
+            font-family: var(--font-mono);
+            border: none;
+            background-color: var(--safetyOrange);
+            color: var(--color1);
+            cursor: pointer;
+            padding: 2px 5px;
+            transition: all 0.3s ease;
+        }
+
+        >button:hover {
+            transform: scale(1.1);
+        }
+    }
+}
