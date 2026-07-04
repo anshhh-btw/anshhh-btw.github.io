@@ -1,0 +1,47 @@
+.reflexPong {
+    margin: auto;
+    max-width: 251.6px;
+    #gameDiv {
+        >div:nth-child(1){
+            max-height: 251.6px;
+        }
+        canvas {
+            border: 1px dashed var(--safetyOrange);
+        }
+
+        .control-buttons {
+            display: flex;
+            justify-content: stretch;
+            align-items: center;
+            >div {
+                flex: 1;
+                padding: 2px;
+                border: 1px dashed var(--safetyOrange);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    }
+
+    #resultDiv{
+        width: 250px;
+        height: 250px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        font-size: 0.78rem;
+        font-weight: 150;
+        gap: 2px;
+        button{
+            background-color: transparent;
+            border: 1px dashed var(--safetyOrange);
+            font-family: var(--font-mono);
+            font-weight: 100;
+            color: var(--safetyOrange);
+            padding: 2px 12px;
+            cursor: pointer;
+        }
+    }
+}

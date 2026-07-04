@@ -19,6 +19,27 @@ function Fourier() {
     const [timeIndex, setTimeIndex] = useState(0);
     const [drawnPathHistory, setDrawnPathHistory] = useState([]);
 
+    const generateDefaultHeart = (pointsCount = 120) => {
+        const points = [];
+        const centerX = 150;
+        const centerY = 140;
+        const scale = 7;
+
+        for (let i = 0; i < pointsCount; i++) {
+            const t = (i / pointsCount) * 2 * Math.PI;
+
+            const xVal = 16 * Math.pow(Math.sin(t), 3);
+            const yVal = 13 * Math.cos(t) - 5 * Math.cos(2 * t) - 2 * Math.cos(3 * t) - Math.cos(4 * t);
+
+            points.push({
+                x: Math.floor(centerX + xVal * scale),
+                y: Math.floor(centerY - yVal * scale)
+            });
+        }
+        return points;
+    };
+
+    // COMBINED INITIALIZATION: Sets dimensions first, THEN draws default shape
     useEffect(() => {
         const canvas = fourierCanvasRef.current;
         if (!canvas) return;
@@ -31,6 +52,18 @@ function Fourier() {
         ctx.lineWidth = 1;
         ctx.lineCap = 'round';
         ctx.lineJoin = 'round';
+
+        const defaultHeart = generateDefaultHeart();
+        setRawPoints(defaultHeart);
+
+        if (defaultHeart.length > 0) {
+            ctx.beginPath();
+            ctx.moveTo(defaultHeart[0].x, defaultHeart[0].y);
+            for (let i = 1; i < defaultHeart.length; i++) {
+                ctx.lineTo(defaultHeart[i].x, defaultHeart[i].y);
+            }
+            ctx.stroke();
+        }
     }, []);
 
     useEffect(() => {
@@ -58,6 +91,8 @@ function Fourier() {
             setRawPoints([{ x, y }]);
 
             ctx.clearRect(0, 0, canvas.width, canvas.height);
+            // Re-apply style defaults since resizing or context clearing could alter them
+            ctx.strokeStyle = '#FF5500'; 
             ctx.beginPath();
             ctx.moveTo(x, y);
         };

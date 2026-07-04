@@ -1,4 +1,7 @@
 #fourierVisual {
+    max-width: fit-content;
+    margin: auto;
+
     #fourierCanvas {
         border: 1px dashed var(--safetyOrange);
 

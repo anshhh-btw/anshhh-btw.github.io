@@ -170,6 +170,20 @@ main {
                     width: 100%;
                 }
             }
+            .div3CardBTS{
+                summary{
+                    font-size: 0.8rem;
+                    font-weight: 150;
+                    cursor: pointer;
+                    user-select: none;
+                }
+                div{
+                    font-weight: 100;
+                    font-size: 0.75rem;
+                    padding: 5px;
+                    margin: 5px;
+                }
+            }
 
             .div3CardLinks {
                 display: flex;

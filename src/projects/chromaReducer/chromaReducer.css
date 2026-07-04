@@ -1,0 +1,112 @@
+#chromaReducerVisual {
+    #uploadImage {
+        margin: auto;
+        width: 300px;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: var(--font-mono);
+
+        #fileUploadLabel {
+            border: 1px dashed var(--safetyOrange);
+            padding: 2px 10px;
+            font-family: var(--font-mono);
+            color: var(--safetyOrange);
+            font-weight: 150;
+            cursor: pointer;
+            transition: 0.2s;
+            font-size: 0.8rem;
+        }
+
+        #fileUploadLabel:hover {
+            background-color: var(--safetyOrange);
+            color: var(--color1);
+            font-weight: 300;
+        }
+
+        #previewContainer button {
+            font-family: var(--font-mono);
+            color: var(--safetyOrange);
+            border: 1px dashed var(--safetyOrange);
+            font-weight: 150;
+            padding: 2px 10px;
+            cursor: pointer;
+            background-color: transparent;
+            transition: 0.3s ease-out;
+            flex: 1;
+            font-size: 0.8rem;
+        }
+
+        #previewContainer button:hover {
+            background-color: var(--safetyOrange);
+            font-weight: 300;
+            color: var(--color1);
+        }
+
+        #previewContainer img {
+            border: 1px dashed var(--safetyOrange);
+        }
+
+        #previewContainer div {
+            display: flex;
+            justify-content: stretch;
+            align-items: center;
+        }
+    }
+
+    #finalImage {
+        margin: auto;
+        min-width: 300px;
+        max-width: 300px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        div {
+            display: flex;
+            justify-content: stretch;
+            align-items: center;
+            font-weight: 100;
+            font-size: 0.8rem;
+            gap: 10px;
+            width: 100%;
+
+            input {
+                flex: 1;
+                appearance: none;
+                background-color: transparent;
+                cursor: pointer;
+                border: 1px solid var(--safetyOrange);
+                margin: 8px 0;
+                height: 4px;
+            }
+
+            input::-webkit-slider-thumb {
+                appearance: none;
+                width: 10px;
+                height: 10px;
+                background-color: var(--safetyOrange);
+            }
+            div{
+                width: max-content;
+            }
+        }
+        #resetButton{
+            background-color: transparent;
+            border: 1px dashed var(--safetyOrange);
+            font-family: var(--font-mono);
+            font-weight: 150;
+            padding: 2px 10px;
+            width: 100%;
+            color: var(--safetyOrange);
+            transition: 0.3s ease-in-out;
+            cursor: pointer;
+        }
+        #resetButton:hover{
+            background-color: var(--safetyOrange);
+            font-weight: 300;
+            color: var(--color1);
+        }
+    }
+}

@@ -1,0 +1,142 @@
+#numberdleVisual {
+    max-width: fit-content;
+    margin: auto;
+
+    >#start {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        min-width: 250px;
+        min-height: 250px;
+        gap: 10px;
+
+        >div:nth-child(1) {
+            font-weight: 100;
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+
+            input {
+                appearance: none;
+                background-color: transparent;
+                cursor: pointer;
+                border: 1px solid var(--safetyOrange);
+                height: 2px;
+                margin: 8px 0;
+            }
+
+            input::-webkit-slider-thumb {
+                appearance: none;
+                width: 10px;
+                height: 10px;
+                background-color: var(--safetyOrange);
+            }
+        }
+
+        button {
+            border: 1px dashed var(--safetyOrange);
+            padding: 2px 0;
+            background-color: transparent;
+            font-family: var(--font-mono);
+            font-weight: 100;
+            color: var(--safetyOrange);
+            width: 100px;
+            cursor: pointer;
+        }
+    }
+
+    >#board {
+        width: 250px;
+        height: fit-content;
+
+        ul {
+            margin: 8px 0;
+            list-style-type: none;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            justify-content: flex-start;
+            align-items: center;
+            color: var(--color1);
+            font-weight: 200;
+            max-height: 284px;
+            overflow-y: scroll;
+
+            li {
+                display: flex;
+            }
+
+            li>div {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        ul::-webkit-scrollbar {
+            display: none;
+        }
+
+        >div:nth-child(1) {
+            width: 249px;
+            height: 300px;
+            border: 1px dashed var(--safetyOrange);
+        }
+
+        >div:nth-child(2) {
+            form {
+                display: flex;
+                justify-content: stretch;
+                align-items: stretch;
+
+                button {
+                    width: 50px;
+                    border: 1px dashed var(--safetyOrange);
+                    background-color: transparent;
+                    cursor: pointer;
+                }
+
+                input {
+                    background-color: transparent;
+                    border: 1px dashed var(--safetyOrange);
+                    font-family: var(--font-mono);
+                    color: var(--safetyOrange);
+                    padding: 0 5px;
+                    font-weight: 100;
+                    flex: 1;
+                }
+
+                input:focus-visible {
+                    outline: none;
+                }
+
+                input[type="number"]::-webkit-outer-spin-button,
+                input[type="number"]::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                }
+            }
+        }
+    }
+
+    .orangeSpan {
+        background-color: var(--safetyOrange);
+        width: 20px;
+        height: 20px;
+    }
+
+    .greenSpan {
+        background-color: var(--matrixGreen);
+        width: 20px;
+        height: 20px;
+    }
+
+    .graySpan {
+        background-color: var(--color5);
+        width: 20px;
+        height: 20px;
+    }
+}
