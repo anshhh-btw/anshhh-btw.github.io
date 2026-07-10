@@ -20,6 +20,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                background-color: var(--color1);
             }
         }
     }
@@ -35,7 +36,7 @@
         font-weight: 150;
         gap: 2px;
         button{
-            background-color: transparent;
+            background-color: var(--color1);
             border: 1px dashed var(--safetyOrange);
             font-family: var(--font-mono);
             font-weight: 100;

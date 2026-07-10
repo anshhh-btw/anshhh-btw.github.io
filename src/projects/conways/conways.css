@@ -31,7 +31,7 @@
             flex: 1;
             font-size: 0.585rem;
             font-family: var(--font-mono);
-            background-color: transparent;
+            background-color: var(--color1);
             border: 1px dotted var(--safetyOrange);
             color: var(--safetyOrange);
             font-weight: 150;

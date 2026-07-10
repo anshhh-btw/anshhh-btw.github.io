@@ -16,7 +16,17 @@ import mazeVisual from '../../assets/videos/maze.mp4';
 import { Link, useNavigate } from 'react-router-dom';
 import ReflexPong from '../../projects/reflexpong/reflexpong';
 import Numberdle from '../../projects/numberdle/numberdle';
+import Nim from '../../projects/nim/nim';
 
+const simulLab = [
+    ["UNBEATABLE TIC TAC TOE", "An optimized adversarial project that merges a raw Minimax decision tree with hardcoded strategic heuristics. This dual-layer architecture guarantees an unbeatable, zero-loss performance while keeping processing overhead at absolute zero.", <TicTacToe></TicTacToe>, "Behind the grid, the engine continuously evaluates all active board patterns, instantly identifying optimal paths to attack or defend. By calculating future game states and executing hardcoded tactical protocols, the system can flawlessly trap the opponent or execute escape sequences to neutralize any threat."],
+    ["CONWAY'S GAME OF LIFE", "A zero-player cellular automaton simulating biological population dynamics on a infinite two-dimensional grid. Regulated by a precise deterministic rule matrix, the system visualizes the emergence of complex life cycles, stable structures, and chaotic patterns from simple initial configurations.", <Conways></Conways>, "Behind the grid, the engine executes a continuous game loop that evaluates every cell in parallel. By analyzing the states of each cell's eight immediate neighbors, the system updates the entire matrix simultaneously according to Conway's classic laws of survival, birth, and death.What makes this simulation fascinating is its computational unpredictability: the system is non-invertible, meaning you cannot calculate the exact state of the 'n'th generation without computing every single preceding iteration. The interactive interface allows you to pause the loop, manually toggle individual pixel nodes, and engineer your own custom biological configurations and self-replicating species."],
+    ["FOURIER ORBITAL SYNTHESIZER", "A geometric signal processing sandbox utilizing discrete Fourier analysis. The simulation deconstructs arbitrary two-dimensional vector paths and coordinate inputs into a finite series of rotating epicycles. By calculating precise orbital frequencies, amplitudes, and phase differentials, the engine synthesizes complex waveform harmonics and traces continuous paths in real-time.", <Fourier></Fourier>, "Behind the canvas, it's pure math. Signal Analysis and Fourier Transform"],
+    ["REFLEX PONG", "An optimized, high-velocity 1v1 arcade deck designed to test human reflex limits against a zero-latency computer processing unit. The player interface controls a tactical barrier along the lower grid vector while the AI automation module maintains a mathematical lock on the payload's trajectory along the upper baseline.", <ReflexPong></ReflexPong>, "Behind the canvas, the program is doing just one thing, keeping track of the ball's x-coordinate and matching the computer's slab's x-coordinate with it every millisecond. This tiny synchronization makes it undefeatable for any speed of the ball."],
+    ["NUMBERDLE", "Numberdle is a fast-paced, addictive number-guessing game inspired by the Wordle concept. Instead of hunting for words, your mission is to crack a randomly generated secret number. With adjustable difficulty settings, it’s the ultimate test for your logic and deduction skills!", <Numberdle></Numberdle>, "Similar to Wordle, Numberdle is a game where a random 'MAX NUMBER LENGTH' digit number is generated, then you have to guess the number by entering your guesses in return of information depicted by colors, grey - the digit is not in the original number, orange - the digit is in the original number but not at the correct place and green - the digit is in the original number and at the correct place. What makes it interesting is that unlike Wordle, where words had meaning, so it was easier to guess, Numberdle has numbers, totally random, with repeating digits, making it a lot more challenging."],
+    ["CHROMATIC REDUCER", "An interactive digital image processing tool designed to analyze complex graphic data arrays and compress their visual profiles down to their most fundamental color frequencies. By extracting and clustering the raw RGB data coordinates of an uploaded image, the engine strips out thousands of transitional color variants and replaces them with a hyper-optimized, high-contrast palette of the most dominant tones.", <ChromaReducer></ChromaReducer>, "The reason why images look realistic is because of the varity of colors modern day cameras have achieved to capture, but when we shrink this capability down to the most occuring colors in the image and replacing it with the ones which are slightly different from it (controlled by MAX DEL), we control the varity of colors, giving the image a whole new essence. Behind the canvas, the program plots out the most occuring colors with their frequencies, then loops through every pixel to find its closest neigbour (based on MAX DEL) from the most occuring color down to least occuring one. Using caching technnique, the whole image is scanned in milliseconds to achieve lag-free experience."],
+    ["NIM", "In this Misère Nim variant, two players alternate removing 1 to 3 matches from a single pile of 15, with the critical rule that the player forced to take the last remaining match loses. The opponent is an AI trained via Reinforcement Learning against itself for over 100,000 iterations.", <Nim></Nim>, "Behind the scenes, the program checks for the current state of matches, looks up in the Q-Table for the state, checks the values for each move and picks the one with the maximum value. The Q-Table is made by training the AI against itself for 100,000 iterations to maximize win via Reinforcement Learning."]
+]
 
 const applicableColors = ["#FFFF00", "#00FFFF", "#FF00FF", "#FFB300", "#FF5500", "#CCA300", "#00FF66", "#00E5FF", "#A3FF00"]
 
@@ -256,7 +266,7 @@ function Homepage() {
                         setCurrentPhotoIndex(currentPhotoIndex === photos.length - 1 ? 0 : currentPhotoIndex + 1)
 
                     }}>
-                        <img src={photos[currentPhotoIndex]} alt="Slideshow frame content" />
+                        <motion.img src={photos[currentPhotoIndex]} alt="Slideshow frame content" />
                     </div>
                 </motion.div>
             </div>
@@ -276,143 +286,28 @@ function Homepage() {
             </motion.div>
             <motion.div id='div3' initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}>
                 <div id='div3Head'>
                     <p><span>T</span>HE <span>S</span>IMULATION <span>L</span>AB</p>
                 </div>
                 <div id='div3List'>
-                    <div className='div3Card'>
-                        <div className='div3CardContent'>
+                    {simulLab.map((item, index) => <div className='card' key={index}>
+                        <div>{item[2]}</div>
+                        <div>
                             <div>
-                                <div className='div3CardHead'><span>00</span> UNBEATABLE TIC TAC TOE</div>
-                                <div className='div3CardDesc'>An optimized adversarial project that merges a raw Minimax decision tree with hardcoded strategic heuristics. This dual-layer architecture guarantees an unbeatable, zero-loss performance while keeping processing overhead at absolute zero.</div>
+                                <div className='cardHead'>0b{index.toString(2)} {item[0]}</div>
+                                <div className='cardDesc'>{item[1]}</div>
                             </div>
-                            <div>
-                            </div>
+                            <div className='cardBTS'>{item[3]}</div>
                         </div>
-                        <div className='div3CardVisual'>
-                            <TicTacToe></TicTacToe>
-                        </div>
-                        <div className='div3CardBTS'>
-                            <details>
-                                <summary>BEHIND THE SCENES</summary>
-                                <div>Behind the grid, the engine continuously evaluates all active board patterns, instantly identifying optimal paths to attack or defend. By calculating future game states and executing hardcoded tactical protocols, the system can flawlessly trap the opponent or execute escape sequences to neutralize any threat.</div>
-                            </details>
-                        </div>
-                    </div>
-                    <div className='div3Card'>
-                        <div className='div3CardContent'>
-                            <div>
-                                <div className='div3CardHead'><span>01</span> CONWAY'S GAME OF LIFE</div>
-                                <div className='div3CardDesc'>A zero-player cellular automaton simulating biological population dynamics on a infinite two-dimensional grid. Regulated by a precise deterministic rule matrix, the system visualizes the emergence of complex life cycles, stable structures, and chaotic patterns from simple initial configurations.</div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div className='div3CardVisual'>
-                            <Conways></Conways>
-                        </div>
-                        <div className='div3CardBTS'>
-                            <details>
-                                <summary>BEHIND THE SCENES</summary>
-                                <div>Behind the grid, the engine executes a continuous game loop that evaluates every cell in parallel. By analyzing the states of each cell's eight immediate neighbors, the system updates the entire matrix simultaneously according to Conway's classic laws of survival, birth, and death.What makes this simulation fascinating is its computational unpredictability: the system is non-invertible, meaning you cannot calculate the exact state of the 'n'th generation without computing every single preceding iteration. The interactive interface allows you to pause the loop, manually toggle individual pixel nodes, and engineer your own custom biological configurations and self-replicating species.</div>
-                            </details>
-                        </div>
-                    </div>
-                    <div className='div3Card'>
-                        <div className='div3CardContent'>
-                            <div>
-                                <div className='div3CardHead'><span>02</span> FOURIER ORBITAL SYNTHESIZER</div>
-                                <div className='div3CardDesc'>A geometric signal processing sandbox utilizing discrete Fourier analysis. The simulation deconstructs arbitrary two-dimensional vector paths and coordinate inputs into a finite series of rotating epicycles. By calculating precise orbital frequencies, amplitudes, and phase differentials, the engine synthesizes complex waveform harmonics and traces continuous paths in real-time.</div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div className='div3CardVisual'>
-                            <Fourier></Fourier>
-                        </div>
-                        <div className='div3CardBTS'>
-                            <details>
-                                <summary>BEHIND THE SCENES</summary>
-                                <div>Behind the canvas, it's pure math. Signal Analysis and Fourier Transform</div>
-                            </details>
-                        </div>
-                    </div>
-                    <div className='div3Card'>
-                        <div className='div3CardContent'>
-                            <div>
-                                <div className='div3CardHead'><span>03</span> REFLEX PONG</div>
-                                <div className='div3CardDesc'>An optimized, high-velocity 1v1 arcade deck designed to test human reflex limits against a zero-latency computer processing unit. The player interface controls a tactical barrier along the lower grid vector while the AI automation module maintains a mathematical lock on the payload's trajectory along the upper baseline.</div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div className='div3CardVisual'>
-                            <ReflexPong></ReflexPong>
-                        </div>
-                        <div className='div3CardBTS'>
-                            <details>
-                                <summary>BEHIND THE SCENES</summary>
-                                <div>Behind the canvas, the program is doing just one thing, keeping track of the ball's x-coordinate and matching the computer's slab's x-coordinate with it every millisecond. This tiny synchronization makes it undefeatable for any speed of the ball.</div>
-                            </details>
-                        </div>
-                    </div>
-                    <div className='div3Card'>
-                        <div className='div3CardContent'>
-                            <div>
-                                <div className='div3CardHead'><span>04</span> NUMBERDLE</div>
-                                <div className='div3CardDesc'>Numberdle is a fast-paced, addictive number-guessing game inspired by the Wordle concept. Instead of hunting for words, your mission is to crack a randomly generated secret number. With adjustable difficulty settings, it’s the ultimate test for your logic and deduction skills!</div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div className='div3CardVisual'>
-                            <Numberdle></Numberdle>
-                        </div>
-                        <div className='div3CardBTS'>
-                            <details>
-                                <summary>BEHIND THE SCENES</summary>
-                                <div>Similar to Wordle, Numberdle is a game where a random 'MAX NUMBER LENGTH' digit number is generated, then you have to guess the number by entering your guesses in return of information depicted by colors, grey - the digit is not in the original number, orange - the digit is in the original number but not at the correct place and green - the digit is in the original number and at the correct place. What makes it interesting is that unlike Wordle, where words had meaning, so it was easier to guess, Numberdle has numbers, totally random, with repeating digits, making it a lot more challenging.</div>
-                            </details>
-                        </div>
-                    </div>
-                    <div className='div3Card'>
-                        <div className='div3CardContent'>
-                            <div>
-                                <div className='div3CardHead'><span>05</span> CHROMATIC REDUCER</div>
-                                <div className='div3CardDesc'>An interactive digital image processing tool designed to analyze complex graphic data arrays and compress their visual profiles down to their most fundamental color frequencies. By extracting and clustering the raw RGB data coordinates of an uploaded image, the engine strips out thousands of transitional color variants and replaces them with a hyper-optimized, high-contrast palette of the most dominant tones.</div>
-                            </div>
-                            <div>
-                            </div>
-                        </div>
-                        <div className='div3CardVisual'>
-                            <ChromaReducer></ChromaReducer>
-                        </div>
-                        <div className='div3CardBTS'>
-                            <details>
-                                <summary>BEHIND THE SCENES</summary>
-                                <div>The reason why images look realistic is because of the varity of colors modern day cameras have achieved to capture, but when we shrink this capability down to the most occuring colors in the image and replacing it with the ones which are slightly different from it (controlled by MAX DEL), we control the varity of colors, giving the image a whole new essence.
-
-                                    Behind the canvas, the program plots out the most occuring colors with their frequencies, then loops through every pixel to find its closest neigbour (based on MAX DEL) from the most occuring color down to least occuring one. Using caching technnique, the whole image is scanned in milliseconds to achieve lag-free experience.
-                                </div>
-                            </details>
-                        </div>
-                    </div>
-                    <div className='div3Card' style={{ alignSelf: 'flex-start' }}>
-                        <div className='div3CardContent'>
-                            <div>
-                                <div className='div3CardHead'><span>//</span> MAKING MORE</div>
-                                <div className='div3CardDesc'>Working constantly to explore new ideas and understand them with crystal clarity by building them.</div>
-                            </div>
-                        </div>
-                    </div>
+                    </div>)}
                 </div>
             </motion.div>
 
             <motion.div id='div4' initial={{ opacity: 0, y: 50 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, amount: 0.2 }}
+                viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.6, ease: "easeOut" }}>
                 <div id='div4Head'>
                     <p><span>I</span>NDEPENDENT <span>P</span>ROJECTS</p>

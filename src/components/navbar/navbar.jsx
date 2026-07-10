@@ -24,7 +24,7 @@ function Navbar() {
                     style={{ background: 'rgb(0, 200, 0)' }}>
                 </motion.div>
                 <p>
-                    <span>// CURRENTLY:</span> <span>EXPERIMENTING</span>
+                    <span>// CURRENTLY:</span> <span>EXPLORING</span>
                 </p>
             </div>
         </motion.nav>

@@ -21,7 +21,7 @@
 
             input {
                 appearance: none;
-                background-color: transparent;
+                background-color: var(--color1);
                 cursor: pointer;
                 border: 1px solid var(--safetyOrange);
                 height: 2px;
@@ -39,7 +39,7 @@
         button {
             border: 1px dashed var(--safetyOrange);
             padding: 2px 0;
-            background-color: transparent;
+            background-color: var(--color1);
             font-family: var(--font-mono);
             font-weight: 100;
             color: var(--safetyOrange);
@@ -95,12 +95,12 @@
                 button {
                     width: 50px;
                     border: 1px dashed var(--safetyOrange);
-                    background-color: transparent;
+                    background-color: var(--color1);
                     cursor: pointer;
                 }
 
                 input {
-                    background-color: transparent;
+                    background-color: var(--color1);
                     border: 1px dashed var(--safetyOrange);
                     font-family: var(--font-mono);
                     color: var(--safetyOrange);

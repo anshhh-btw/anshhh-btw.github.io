@@ -163,7 +163,7 @@ function ReflexPong() {
                         RESULT: <span className="fail-text">{currentResult}</span>
                     </div>
                     <button onClick={resetGame} className="play-again-btn">
-                        [PLAY AGAIN]
+                        PLAY AGAIN
                     </button>
                 </div>
             )}

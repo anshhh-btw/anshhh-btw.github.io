@@ -11,8 +11,13 @@ function ChromaReducer() {
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
-            const fileUrl = URL.createObjectURL(file);
-            setImagePreview(fileUrl);
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setImagePreview(reader.result);
+            };
+
+            reader.readAsDataURL(file);
         }
     };
 
@@ -24,7 +29,7 @@ function ChromaReducer() {
         setCurrentActivity(0);
     };
 
-    
+
     const editImage = () => {
         setCurrentActivity(1)
     }
@@ -148,10 +153,10 @@ function ChromaReducer() {
                             />
                             <div>
                                 <button onClick={handleRemoveImage} id="removeBtn">
-                                    Remove Image
+                                    Change
                                 </button>
                                 <button onClick={editImage} id='editBtn'>
-                                    Edit Image
+                                    Continue
                                 </button>
                             </div>
                         </div>
