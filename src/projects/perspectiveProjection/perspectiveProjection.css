@@ -1,0 +1,56 @@
+#perspectiveProjectionVisual {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
+
+    >div:nth-child(1) {
+        border: 1px dashed var(--safetyOrange);
+    }
+
+    >div:nth-child(2) {
+        display: flex;
+        flex-direction: column;
+        width: 300px;
+        font-size: 0.7rem;
+        font-weight: 100;
+
+        input {
+            flex: 1;
+            appearance: none;
+            background-color: var(--color1);
+            cursor: pointer;
+            border: 1px solid var(--safetyOrange);
+            margin: 8px 0;
+            height: 4px;
+        }
+
+        input::-webkit-slider-thumb {
+            appearance: none;
+            width: 10px;
+            height: 10px;
+            background-color: var(--safetyOrange);
+        }
+
+        #centerControl {
+            display: flex;
+            gap: 10px;
+            justify-content: space-between;
+            align-items: center;
+            input{
+                width: 30%;
+            }
+        }
+        >div:nth-child(2){
+            display: flex;
+            justify-content: space-between;
+            >div:nth-child(1)>p{
+                text-align: left;
+            }           
+            >div:nth-child(2)>p{
+                text-align: right;
+            }           
+        }
+    }
+}
