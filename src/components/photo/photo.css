@@ -1,0 +1,17 @@
+#div1PhotoFrame {
+    width: 380px;
+    height: 380px;
+    background-image: url(../../assets/svgs/frame.svg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: pointer;
+
+    >img {
+        transition: all 0.3s ease-out;
+        width: 95%;
+        display: none;
+    }
+}

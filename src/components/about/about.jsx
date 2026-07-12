@@ -1,15 +1,10 @@
+import PhotoFrame from '../photo/photo';
 import './about.css';
 
 import { easeOut, motion, scale } from 'framer-motion';
-import { useState } from 'react';
-
-const imageModules = import.meta.glob('../../assets/myPhotos/*.{jpg,png,jpeg,svg,webp}', { eager: true });
-const photos = Object.values(imageModules).map(mod => mod.default);
 
 function About() {
     document.title = "Ansh | About";
-
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     return <div id='about'>
         <div>// SYSTEM MANIFEST</div>
@@ -31,10 +26,7 @@ function About() {
                 </motion.div>
             </div>
             <div id='aboutMiddle'>
-                <motion.div initial={{ scale: 0, opacity: 0 }} whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut }} id='aboutTop' onClick={() => {
-                        setCurrentPhotoIndex(currentPhotoIndex === photos.length - 1 ? 0 : currentPhotoIndex + 1);
-                    }}><img src={photos[currentPhotoIndex]} /></motion.div>
+                <PhotoFrame></PhotoFrame>
                 <motion.div initial={{ y: 100, opacity: 0 }} whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut, delay: 0.3 }} id='aboutBottom'>
                     Understanding through creation. I believe the clearest path to mastering complex logic is to build it. Every project is an act of engineering a fundamental concept into a functional, visual reality.<span>|</span>

@@ -10,14 +10,13 @@ import Fourier from '../../projects/fourier/fourier'
 import ChromaReducer from '../../projects/chromaReducer/chromaReducer';
 import { useEffect, useRef, useState } from 'react';
 
-const imageModules = import.meta.glob('../../assets/myPhotos/*.{jpg,png,jpeg,svg,webp}', { eager: true });
-const photos = Object.values(imageModules).map(mod => mod.default);
 import mazeVisual from '../../assets/videos/maze.mp4';
 import { Link, useNavigate } from 'react-router-dom';
 import ReflexPong from '../../projects/reflexpong/reflexpong';
 import Numberdle from '../../projects/numberdle/numberdle';
 import Nim from '../../projects/nim/nim';
 import PerspectiveProjection from '../../projects/perspectiveProjection/perspectiveProjection';
+import PhotoFrame from '../photo/photo';
 
 const simulLab = [
     ["UNBEATABLE TIC TAC TOE", "An optimized adversarial project that merges a raw Minimax decision tree with hardcoded strategic heuristics. This dual-layer architecture guarantees an unbeatable, zero-loss performance while keeping processing overhead at absolute zero.", <TicTacToe></TicTacToe>, "Behind the grid, the engine continuously evaluates all active board patterns, instantly identifying optimal paths to attack or defend. By calculating future game states and executing hardcoded tactical protocols, the system can flawlessly trap the opponent or execute escape sequences to neutralize any threat."],
@@ -47,8 +46,6 @@ function Homepage() {
 
     const isDrawingRef = useRef(false);
     const currentDrawingColorRef = useRef('#FF00FF');
-
-    const [currentPhotoIndex, setCurrentPhotoIndex] = useState(0);
 
     const navigate = useNavigate()
 
@@ -264,12 +261,7 @@ function Homepage() {
                     </div>
                 </motion.div>
                 <motion.div id='div1Right' initial={{ x: 100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
-                    <div id='div1PhotoFrame' onClick={() => {
-                        setCurrentPhotoIndex(currentPhotoIndex === photos.length - 1 ? 0 : currentPhotoIndex + 1)
-
-                    }}>
-                        <motion.img src={photos[currentPhotoIndex]} alt="Slideshow frame content" />
-                    </div>
+                    <PhotoFrame></PhotoFrame>
                 </motion.div>
             </div>
 

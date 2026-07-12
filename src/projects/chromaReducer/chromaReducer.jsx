@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import './chromaReducer.css';
-import defaultImage from './photo6.jpg'
+import defaultImage from './castle.png'
 
 function ChromaReducer() {
     const [currentActivity, setCurrentActivity] = useState(1);
