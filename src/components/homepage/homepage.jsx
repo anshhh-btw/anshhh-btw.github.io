@@ -290,7 +290,7 @@ function Homepage() {
                         <div>{item[2]}</div>
                         <div>
                             <div>
-                                <div className='cardHead'>0b{index.toString(2)} {item[0]}</div>
+                                <div className='cardHead'><span style={{ color: 'var(--color5)' }}>0b{index.toString(2)}</span> {item[0]}</div>
                                 <div className='cardDesc'>{item[1]}</div>
                             </div>
                             <div className='cardBTS'>{item[3]}</div>
