@@ -245,7 +245,7 @@ function Homepage() {
             <div id="topLineDiv">
                 <div id="topLineTags">
                     <p style={{ color: 'var(--neonAmber)' }}>// ASPIRING ENGINEER</p>
-                    <p style={{ color: 'var(--matrixGreen)' }}>// AUTOMATING LIFESTYLE</p>
+                    <p style={{ color: 'var(--matrixGreen)' }}>// LEARNING TO ENGINEER</p>
                 </div>
                 <motion.div id="topLine" initial={{ flex: 0 }} animate={{ flex: 1 }} transition={{ duration: 0.5, ease: 'easeOut', type: 'spring' }}></motion.div>
             </div>
@@ -253,8 +253,8 @@ function Homepage() {
             <div id='div1'>
                 <motion.div id='div1Left' initial={{ x: -100, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.5, ease: 'easeOut' }}>
                     <div id='div1LeftTop'>
-                        <h1>BUILDING SYNERACTIVE SYSTEMS.</h1>
-                        <p>Creative engineer bridging the gap between hardware architecture and full-stack software. Merging custom Python backends, reactive interfaces, and microcontroller intelligence into premium, fully customizable projects designed to elevate lifestyle efficiency.</p>
+                        <h1>BUILDING A FOUNDATION.</h1>
+                        <p>Electrical Engineering student exploring the core principles behind circuits, signals, and power systems. Focused on building a strong theoretical foundation while figuring out where my interests within EE will take me next.</p>
                     </div>
                     <div id='div1LeftBottom'>
                         <MyButton type='type1' text="CONNECT" onClickAction={() => { navigate('/contact') }}></MyButton>

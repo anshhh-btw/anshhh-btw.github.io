@@ -13,7 +13,7 @@ function About() {
                 <motion.div initial={{ x: -100, opacity: 0 }} whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut }}>
                     <p>// CORE OBJECTIVES</p>
-                    <p>I am a creative engineer specializing in the intersection of hardware architecture and full-stack software. My development approach centers on building clean, fully integrated systems that connect custom backends with tactile environments. I focus on creating performance-driven projects that solve concrete efficiency challenges.</p>
+                    <p>I am an Electrical Engineering student building a foundation across circuits, power systems, and signal theory. My approach centers on understanding the core principles that drive electrical systems — from basic circuit analysis to how power and signals behave in the real world. I focus on strengthening fundamentals while exploring where my interests take me next.</p>
                 </motion.div>
                 <motion.div initial={{ x: -100, opacity: 0 }} whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut, delay: 0.3 }}>
@@ -21,7 +21,8 @@ function About() {
                     <ul>
                         <li>ORIGIN: INDIA</li>
                         <li>STATUS: STUDENT</li>
-                        <li>FIELD: --------</li>
+                        <li>FIELD: ELECTRICAL ENGINEERING</li>
+                        <li>INSTITUTION: IIEST</li>
                     </ul>
                 </motion.div>
             </div>
@@ -29,7 +30,7 @@ function About() {
                 <PhotoFrame></PhotoFrame>
                 <motion.div initial={{ y: 100, opacity: 0 }} whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut, delay: 0.3 }} id='aboutBottom'>
-                    Understanding through creation. I believe the clearest path to mastering complex logic is to build it. Every project is an act of engineering a fundamental concept into a functional, visual reality.<span>|</span>
+                    Understanding through learning. I believe the clearest path to mastering electrical engineering is to build a strong foundation first. Every course and concept is a step toward turning fundamental theory into practical understanding.<span>|</span>
                 </motion.div>
             </div>
             <div id='aboutRight'>
@@ -37,18 +38,18 @@ function About() {
                     viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut }}>
                     <p>// SYSTEM SPECS</p>
                     <ul>
-                        <li>LANGUAGES SUPPORTED: PYTHON, JAVASCRIPT, HTML & CSS (LMAO)</li>
+                        <li>LANGUAGES SUPPORTED: C, PYTHON, JAVASCRIPT, HTML & CSS (LMAO)</li>
                         <li>INTERFACES & ECOSYSTEMS: REACT.JS</li>
-                        <li>HARDWARE INVENTORY: ESP32</li>
+                        <li>TOOLS: MATLAB, AUTOCAD</li>
                     </ul>
                 </motion.div>
                 <motion.div initial={{ x: 100, opacity: 0 }} whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true, amount: 0.2 }} transition={{ duration: 0.8, ease: easeOut, delay: 0.3 }}>
                     <p>// FUTURE DIRECTIVES</p>
                     <ul>
-                        <li>Researching custom PCB design frameworks</li>
-                        <li>Exploring more cellular automation theories</li>
-                        <li>Simulating physics vectors and fluid dynamics on HTML5 Canvas</li>
+                        <li>Strengthening core concepts in circuits and systems</li>
+                        <li>Exploring different specializations within EE</li>
+                        <li>Building small projects to apply theory in practice</li>
                     </ul>
                 </motion.div>
             </div>

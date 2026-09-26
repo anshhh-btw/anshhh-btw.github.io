@@ -6,7 +6,7 @@ function Footer() {
     return <footer>
         <div>
             <p>LET'S BUILD SOMETHING <span>REAL</span></p>
-            <p>Currently exploring electronics and unheard complex topics</p>
+            <p>Currently exploring the fundamentals of electrical engineering and how it connects to the real world</p>
         </div>
         <div>
             <p>// ENDPOINTS</p>
